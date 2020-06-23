@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ModTools">
+    <output-path>$PROJECT_DIR$/out/artifacts/ModTools</output-path>
+    <root id="archive" name="ModTools.jar">
+      <element id="module-output" name="ModTools" />
+    </root>
+  </artifact>
+</component>

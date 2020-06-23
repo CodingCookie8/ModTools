@@ -1,0 +1,29 @@
+# Thank you for using ModTools! This is the plugin.yml
+# file. Please do not edit or modify anything in this file
+# unless you understand what you are doing
+
+main: me.codingcookie8.modtools.ModTools
+name: ModTools
+version: 0.0.1 # This is the version of the plugin, not of the server
+description: A comprehensive Moderation toolbox.
+api-version: 1.15
+author: CodingCookie8
+
+commands:
+  modtools:
+    description: The main command for the plugin.
+    aliases: [ModTools, mtools, mt]
+    permission: modtools.help
+    usage: "Usage: /modtools or /mt"
+  ticket:
+    description: Read/send tickets.
+    permission: modtools.ticket.*
+    usage: "Usage: /ticket <send/read>"
+  report:
+    description: Report a player.
+    permission: modtools.report
+    usage: "Usage: /report <playername>"
+
+
+
+

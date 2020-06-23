@@ -1,0 +1,13 @@
+# In this file, you can edit any message that is sent to the user.
+# These messages support the Minecraft color codes, which can be found here:
+# &0 = Black                 &1 = Dark Blue
+# &2 = Dark Green            &3 = Dark Aqua
+# &4 = Dark Red              &5 = Dark Purple
+# &6 = Gold                  &7 = Gray
+# &8 = Dark Gray             &9 = Blue
+# &a = Green                 &b = Aqua
+# &c = Red                   &d = Light Purple
+# &e = Yellow                &f = White
+# &l = Bold
+
+no-permission: "&4&lYou do not have permission to perform that command."
