@@ -1,0 +1,4 @@
+chat:
+  slow:
+    length: 0
+    enabled: false

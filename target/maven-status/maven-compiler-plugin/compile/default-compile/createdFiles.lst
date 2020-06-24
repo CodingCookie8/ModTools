@@ -1,4 +1,7 @@
+me/codingcookie8/modtools/listeners/ChatListener$1.class
 me/codingcookie8/modtools/permissions/PermissionHandler.class
+me/codingcookie8/modtools/listeners/ChatListener.class
+me/codingcookie8/modtools/commands/subcommands/chatsubcommands/ChatSubCommandSlow.class
 me/codingcookie8/modtools/ModTools.class
 me/codingcookie8/modtools/commands/CommandTicket.class
 me/codingcookie8/modtools/gui/MuteGUI.class
@@ -9,12 +12,15 @@ me/codingcookie8/modtools/commands/subcommands/SubCommandChat.class
 me/codingcookie8/modtools/gui/BanGUI.class
 me/codingcookie8/modtools/commands/subcommands/SubCommandBan.class
 me/codingcookie8/modtools/files/messages/CreateMsgsFile.class
+me/codingcookie8/modtools/files/config/GetConfigFile.class
+me/codingcookie8/modtools/files/config/CreateConfigFile.class
 me/codingcookie8/modtools/commands/subcommands/SubCommandMute.class
 me/codingcookie8/modtools/commands/subcommands/SubCommandVanish.class
 me/codingcookie8/modtools/commands/subcommands/chatsubcommands/ChatSubCommandClear.class
 me/codingcookie8/modtools/commands/CommandReport.class
 me/codingcookie8/modtools/commands/subcommands/SubCommandEChest.class
 me/codingcookie8/modtools/commands/CommandModTools.class
+me/codingcookie8/modtools/commands/subcommands/chatsubcommands/SlowVariables.class
 me/codingcookie8/modtools/commands/subcommands/SubCommandHelp.class
 me/codingcookie8/modtools/commands/subcommands/SubCommandInvsee.class
 me/codingcookie8/modtools/files/messages/GetMsgsFile.class

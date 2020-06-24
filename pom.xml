@@ -10,6 +10,16 @@
 
     <build>
         <finalName>${project.artifactId}-${project.version}$</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
@@ -17,6 +27,7 @@
                 <filtering>true</filtering>
                 <directory>${basedir}/src/main/resources/</directory>
                 <includes>
+                    <include>config.yml</include>
                     <include>messages.yml</include>
                     <include>plugin.yml</include>
                 </includes>

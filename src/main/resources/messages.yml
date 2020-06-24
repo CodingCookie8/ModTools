@@ -17,9 +17,20 @@
 # Use %sender% to get the name of the sender.
 # Use %target% to get the name of the target.
 
-no-permission:
+no-permission: # %target% or %sender% is not applicable here
   message: "&cYou do not have permission to perform that command."
   enabled: true
-cleared-chat:
+cleared-chat: # %target% is not applicable here
   message: "&6&lChat has been cleared by %sender%"
+  enabled: true
+slow-mode-on: # %target% is not applicable here
+  # The %int% is the amount of seconds that a player must
+  # wait before sending the next message.
+  message: "&cChat has been put into slow mode (%int% seconds)"
+  enabled: true
+slow-mode-off: # %target% is not applicable here
+  message: "&cChat has been taken out of slow mode."
+  enabled: true
+slow-mode-denied: # %target% or %sender% is not applicable here
+  message: "&cYou're sending messages too fast!"
   enabled: true

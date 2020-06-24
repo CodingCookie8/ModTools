@@ -4,7 +4,7 @@
 
 main: me.codingcookie8.modtools.ModTools
 name: ModTools
-version: 0.0.2-SNAPSHOT
+version: 0.0.4-SNAPSHOT
 description: A comprehensive Moderation toolbox.
 api-version: 1.15
 author: CodingCookie8
@@ -95,8 +95,18 @@ permissions:
   modtools.chat.lock:
     description: Grants access to stop all players from chatting.
     default: op
+    children:
+      modtools.chat.lock.exempt: true
+  modtools.chat.lock.exempt:
+    description: Grants access to allow player to speak while chat is locked.
+    default: op
   modtools.chat.slow:
     description: Grants access to put chat into slow mode.
+    default: op
+    children:
+      modtools.chat.slow.exempt: true
+  modtools.chat.slow.exempt:
+    description: Grants access to allow player to override slowmode.
     default: op
   modtools.chat.clear:
     description: Grants access to clear chat.
