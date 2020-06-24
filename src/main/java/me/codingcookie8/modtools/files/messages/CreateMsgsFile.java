@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class CreateMsgsFile extends YamlConfiguration{
 
-    private File messagesFile = new File("plugins" + File.separator + "ModTools" + File.separator + "messages" + File.separator  + ".yml");
+    private File messagesFile = new File("plugins" + File.separator + "ModTools" + File.separator + "messages.yml");
     private FileConfiguration messagesFileConfig = YamlConfiguration.loadConfiguration(messagesFile);
 
     public FileConfiguration getMessagesFileConfig(){

@@ -10,4 +10,16 @@
 # &e = Yellow                &f = White
 # &l = Bold
 
-no-permission: "&cYou do not have permission to perform that command."
+# Below each message is an "enabled" section. All are default
+# set to true. If you do not want a message to be shown, change
+# this to false.
+
+# Use %sender% to get the name of the sender.
+# Use %target% to get the name of the target.
+
+no-permission:
+  message: "&cYou do not have permission to perform that command."
+  enabled: true
+cleared-chat:
+  message: "&6&lChat has been cleared by %sender%"
+  enabled: true

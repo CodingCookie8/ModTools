@@ -22,6 +22,118 @@ commands:
     permission: modtools.report
     usage: "Usage: /report <playername>"
 
+permissions:
+  modtools.*:
+    description: Grants access to all ModTools commands.
+    default: op
+    children:
+      modtools.help: true
+      modtools.punish.*: true
+      modtools.staffchat: true
+      modtools.inventory.*: true
+      modtools.chat.*: true
+      modtools.shutdown: true
+      modtools.vanish: true
+      modtools.spectate: true
+      modtools.disabledrops: true
+      modtools.ticket.*: true
+      modtools.report: false
+  modtools.help:
+    description: Grants access to see the commands within ModTools.
+    default: op
+  # Punishment commands
+  modtools.punish.*:
+    description: Grants access to all punishment commands.
+    default: op
+    children:
+      modtools.punish.ban: true
+      modtools.punish.tempban: true
+      modtools.punish.mute: true
+      modtools.punish.tempmute: true
+      modtools.punish.freeze: true
+      modtools.punish.kickall: true
+  modtools.punish.ban:
+    description: Grants access to the ban command and GUI
+    default: op
+  modtools.punish.tempban:
+    description: Grants access to the tempban command and the ban GUI, but not the permanent ban option
+    default: op
+  modtools.punish.mute:
+    description: Grants access to the mute command.
+    default: op
+  modtools.punish.tempmute:
+    description: Grants access to the tempmute command the mute GUI, but not the permanent mute option
+    default: op
+  modtools.punish.freeze:
+    description: Grants access to the freeze command.
+    default: op
+  modtools.punish.kickall:
+    description: Grants access to the kickall command.
+    default: op
+  # Inventory commands
+  modtools.inventory.*:
+    description: Grants access to the invsee command.
+    default: op
+    children:
+      modtools.inventory.main: true
+      modtools.inventory.enderchest: true
+  modtools.inventory.main:
+    description: Grants access to the invsee command.
+    default: op
+  modtools.inventory.enderchest:
+    description: Grants access to the enderchest command.
+    default: op
+  # Chat control, not affiliated with the ChatControl plugin
+  modtools.chat.*:
+    description: Grants access to all chat control commands.
+    default: op
+    children:
+      modtools.chat.lock: true
+      modtools.chat.slow: true
+      modtools.chat.clear: true
+      modtools.chat.staff: true
+  modtools.chat.lock:
+    description: Grants access to stop all players from chatting.
+    default: op
+  modtools.chat.slow:
+    description: Grants access to put chat into slow mode.
+    default: op
+  modtools.chat.clear:
+    description: Grants access to clear chat.
+    default: op
+  modtools.chat.staff:
+    description: Grants access to the staffchat command.
+    default: op
+  # Misc
+  modtools.shutdown:
+    description: Grants access to the shutdown command.
+    default: op
+  modtools.vanish:
+    description: Grants access to the vanish command.
+    default: op
+  modtools.spectate:
+    description: Grants access to the spectate command.
+    default: op
+  modtools.disabledrops:
+    description: Grants access to the disable drops command.
+    default: op
+  # Ticket system
+  modtools.ticket.*:
+    description: Grants access to all ticket commands.
+    default: op
+    children:
+      modtools.ticket.read: true
+      modtools.ticket.send: false
+  modtools.ticket.read:
+    description: Grants access to read all tickets.
+    default: op
+  # Non-OP permissions
+  modtools.ticket.send:
+    description: Grants access to the ticket send command.
+    default: not op
+  modtools.report:
+    description: Grants access to the report command.
+    default: not op
 
 
 
