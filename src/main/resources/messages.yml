@@ -20,8 +20,22 @@
 no-permission: # %target% or %sender% is not applicable here
   message: "&cYou do not have permission to perform that command."
   enabled: true
+
+# -------------------------------------------------------- #
+# |                   Chat Messages                      | #
+# -------------------------------------------------------- #
+
 cleared-chat: # %target% is not applicable here
   message: "&6&lChat has been cleared by %sender%"
+  enabled: true
+lock-mode-on: # %target% is not applicable here
+  message: "&cChat has been locked!"
+  enabled: true
+lock-mode-off: # %target% is not applicable here
+  message: "&cChat has been unlocked."
+  enabled: true
+lock-mode-denied: # %target% is not applicable here
+  message: "&cYou can't send messages right now."
   enabled: true
 slow-mode-on: # %target% is not applicable here
   # The %int% is the amount of seconds that a player must

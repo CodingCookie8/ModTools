@@ -1,4 +1,49 @@
+# -------------------------------------------------------- #
+# |                      ModTools                        | #
+# -------------------------------------------------------- #
+
+# Thank you for downloading ModTools!
+
+# This is the configuration file for the entire plugin. Many
+# different settings can be changed and modified to fit your
+# servers needs.
+
+# If you are receiving an error after changing something in
+# this file, and you are not sure how to revert back, please
+# copy and paste the config.yml file found here:
+
+# https://github.com/CodingCookie8/ModTools/blob/master/src/main/resources/config.yml
+
+# I will walk you through exactly what each section does in
+# this file.
+
+# -------------------------------------------------------- #
+# |                   Chat Settings                      | #
+# -------------------------------------------------------- #
+
+# Below are the chat settings.
+
 chat:
+  lock:
+    # If you want chat to be locked, change this to "true"
+    enabled: false
+    # This can also be run in game by doing:
+    # /mt chat lock
+    # You must have the modtools.chat.lock permission to
+    # perform this command. You can also grant the
+    # modtools.chat.lock.exempt permission to a group you
+    # want to be exempt from the lock.
   slow:
+    # If you want the chat to be on slow mode, change the 0
+    # after length below to the amount of seconds a user must
+    # wait before sending another message. You must also
+    # change the enabled section to "true"
     length: 0
     enabled: false
+    # Like above, this can be changed in game by
+    # running the command:
+    # /mt chat slow <length>
+    # You must have the modtools.chat.slow permission to
+    # perform this command. You can also grant the
+    # modtools.chat.slow.exempt permission to a group you
+    # want to be exempt from the lock.

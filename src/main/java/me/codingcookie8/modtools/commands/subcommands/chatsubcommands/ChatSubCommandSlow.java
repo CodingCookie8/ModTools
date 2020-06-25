@@ -6,9 +6,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class ChatSubCommandSlow {
 
     private GetMsgsFile messagesFile;
@@ -22,11 +19,11 @@ public class ChatSubCommandSlow {
             return;
         }
 
-        SlowVariables sV = new SlowVariables();
-        sV.setSlowModeLengthConfig(seconds);
-        sV.setSlowModeLengthHashMap(seconds);
-        sV.setEnabledConfig(true);
-        sV.setSlowModeEnabledHashMap(true);
+        SlowUtil slowUtil = new SlowUtil();
+        slowUtil.setSlowModeLengthConfig(seconds);
+        slowUtil.setSlowModeLengthHashMap(seconds);
+        slowUtil.setEnabledConfig(true);
+        slowUtil.setSlowModeEnabledHashMap(true);
 
         if(messagesFile.getEnabled("slow-mode-on", true)){
             String message = ChatColor.translateAlternateColorCodes('&', messagesFile.getMessage("slow-mode-on", "&cChat has been put into slow mode (%int% seconds)"));
@@ -42,7 +39,7 @@ public class ChatSubCommandSlow {
             return;
         }
 
-        SlowVariables sV = new SlowVariables();
+        SlowUtil sV = new SlowUtil();
         sV.setSlowModeLengthConfig(0);
         sV.setSlowModeLengthHashMap(0);
         sV.setEnabledConfig(false);

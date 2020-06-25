@@ -4,7 +4,7 @@ import me.codingcookie8.modtools.files.config.GetConfigFile;
 
 import java.util.HashMap;
 
-public class SlowVariables {
+public class SlowUtil {
 
     private GetConfigFile configFile;
     private HashMap<String, Integer> slowModeLength = new HashMap<String, Integer>();
@@ -41,24 +41,24 @@ public class SlowVariables {
     }
 
     public int getLengthHashMap(){
-        if(getIntHashMap().get("chat") == null){
-            getIntHashMap().put("chat", getSlowModeLengthConfig());
+        if(getIntHashMap().get("slow") == null){
+            getIntHashMap().put("slow", getSlowModeLengthConfig());
         }
-        return getIntHashMap().get("chat");
+        return getIntHashMap().get("slow");
     }
 
     public boolean getEnabledHashMap(){
-        if(getBooleanHashMap().get("chat") == null){
-            getBooleanHashMap().put("chat", isEnabledConfig());
+        if(getBooleanHashMap().get("slow") == null){
+            getBooleanHashMap().put("slow", isEnabledConfig());
         }
-        return getBooleanHashMap().get("chat");
+        return getBooleanHashMap().get("slow");
     }
 
     public void setSlowModeLengthHashMap(int seconds){
-        getIntHashMap().put("chat", seconds);
+        getIntHashMap().put("slow", seconds);
     }
 
     public void setSlowModeEnabledHashMap(boolean enabled){
-        getBooleanHashMap().put("chat", enabled);
+        getBooleanHashMap().put("slow", enabled);
     }
 }

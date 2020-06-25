@@ -13,19 +13,17 @@
 package me.codingcookie8.modtools;
 
 import me.codingcookie8.modtools.commands.CommandModTools;
-import me.codingcookie8.modtools.commands.subcommands.chatsubcommands.SlowVariables;
-import me.codingcookie8.modtools.files.messages.CreateMsgsFile;
+import me.codingcookie8.modtools.commands.subcommands.chatsubcommands.SlowUtil;
+import me.codingcookie8.modtools.gui.chat.ChatGUI;
+import me.codingcookie8.modtools.gui.chat.ChatGUIUtil;
 import me.codingcookie8.modtools.listeners.ChatListener;
-import org.bukkit.Bukkit;
+import me.codingcookie8.modtools.listeners.InventoryClickListener;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ModTools extends JavaPlugin {
 
@@ -33,15 +31,21 @@ public class ModTools extends JavaPlugin {
     private File folder;
     private File msgsFile;
     private File configFile;
-    private SlowVariables sV;
+    private SlowUtil sV;
+
+    private static ChatGUIUtil CHAT_UTIL;
 
     public ChatListener chatListener;
+    public InventoryClickListener inventoryClickListener;
 
     public void onEnable() {
         plugin = this;
 
+        CHAT_UTIL = new ChatGUIUtil();
+
         chatListener = new ChatListener(this);
-        sV = new SlowVariables();
+        inventoryClickListener = new InventoryClickListener(this);
+        sV = new SlowUtil();
 
         folder = new File("plugins" + File.separator + "ModTools");
         if(!folder.exists()) {
@@ -60,6 +64,7 @@ public class ModTools extends JavaPlugin {
 
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(chatListener, this);
+        pm.registerEvents(inventoryClickListener, this);
 
         CommandExecutor mtExecutor = new CommandModTools(this);
         getCommand("modtools").setExecutor(mtExecutor);
@@ -69,6 +74,10 @@ public class ModTools extends JavaPlugin {
 
     public void onDisable(){
         plugin = null;
+    }
+
+    public static ChatGUIUtil getChatUtil(){
+        return CHAT_UTIL;
     }
 
 }

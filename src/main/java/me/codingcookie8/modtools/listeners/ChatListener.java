@@ -2,8 +2,11 @@ package me.codingcookie8.modtools.listeners;
 
 import me.codingcookie8.modtools.ModTools;
 import me.codingcookie8.modtools.commands.subcommands.chatsubcommands.ChatSubCommandSlow;
-import me.codingcookie8.modtools.commands.subcommands.chatsubcommands.SlowVariables;
+import me.codingcookie8.modtools.commands.subcommands.chatsubcommands.LockUtil;
+import me.codingcookie8.modtools.commands.subcommands.chatsubcommands.SlowUtil;
 import me.codingcookie8.modtools.files.messages.GetMsgsFile;
+import me.codingcookie8.modtools.gui.chat.ChatGUI;
+import me.codingcookie8.modtools.gui.chat.ChatGUIUtil;
 import me.codingcookie8.modtools.permissions.PermissionHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,16 +18,18 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.UUID;
 
-public class ChatListener implements Listener {
+import static org.bukkit.ChatColor.RED;
+
+public class ChatListener implements Listener{
 
     private PermissionHandler pH;
     private ChatSubCommandSlow subCommandSlow;
     private GetMsgsFile messagesFile;
     private int seconds;
-    private boolean enabled;
+    private boolean slowModeEnabled;
+    private boolean lockEnabled;
 
     private final ModTools plugin;
 
@@ -41,14 +46,40 @@ public class ChatListener implements Listener {
         subCommandSlow = new ChatSubCommandSlow();
         messagesFile = new GetMsgsFile();
 
-        SlowVariables sV = new SlowVariables();
-        seconds = sV.getLengthHashMap();
-        enabled = sV.getEnabledHashMap();
+        SlowUtil slowUtil = new SlowUtil();
+        seconds = slowUtil.getLengthHashMap();
+        slowModeEnabled = slowUtil.getEnabledHashMap();
 
-        if(pH.checkPermission(p, "modtools.chat.slow.exempt")){
+        LockUtil lockUtil = new LockUtil();
+        lockEnabled = lockUtil.getLockEnabledHashMap();
+
+        if(ModTools.getChatUtil().getWaitingForSlowInput().contains(p.getUniqueId())){
+            int seconds1 = 0;
+            try {
+                seconds1 = Integer.parseInt(e.getMessage());
+            } catch (NumberFormatException ex) {
+                p.sendMessage(RED + "Couldn't recognize number submitted. Process cancelled.");
+                ModTools.getChatUtil().getWaitingForSlowInput().remove(p.getUniqueId());
+                e.setCancelled(true);
+                return;
+            }
+            e.setCancelled(true);
+            ModTools.getChatUtil().getWaitingForSlowInput().remove(p.getUniqueId());
+            subCommandSlow.slowModeOn(p, seconds1);
             return;
         }
-        if(!(enabled)){
+        if(pH.checkPermission(p, "modtools.chat.slow.exempt") || pH.checkPermission(p, "modtools.chat.lock.exempt")) {
+            return;
+        }
+        if(lockEnabled){
+            e.setCancelled(true);
+
+            if(messagesFile.getEnabled("lock-mode-denied", true)){
+                String message = ChatColor.translateAlternateColorCodes('&', messagesFile.getMessage("lock-mode-denied", "&cYou can't send messages right now."));
+                p.sendMessage(message);
+            }
+        }
+        if(!(slowModeEnabled)){
             return;
         }
         if(!(slowModePlayers.contains(p.getUniqueId()))){
