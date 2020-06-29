@@ -43,15 +43,13 @@ public class ChatListener implements Listener{
     public void onChat(AsyncPlayerChatEvent e){
         Player p = e.getPlayer();
         pH = new PermissionHandler();
-        subCommandSlow = new ChatSubCommandSlow();
+        subCommandSlow = new ChatSubCommandSlow(plugin);
         messagesFile = new GetMsgsFile();
 
-        SlowUtil slowUtil = new SlowUtil();
-        seconds = slowUtil.getLengthHashMap();
-        slowModeEnabled = slowUtil.getEnabledHashMap();
+        seconds = ModTools.getSlowUtil().getLengthHashMap();
+        slowModeEnabled = ModTools.getSlowUtil().getEnabledHashMap();
 
-        LockUtil lockUtil = new LockUtil();
-        lockEnabled = lockUtil.getLockEnabledHashMap();
+        lockEnabled = ModTools.getLockUtil().getLockEnabledHashMap();
 
         if(ModTools.getChatUtil().getWaitingForSlowInput().contains(p.getUniqueId())){
             int seconds1 = 0;
@@ -63,10 +61,15 @@ public class ChatListener implements Listener{
                 e.setCancelled(true);
                 return;
             }
-            e.setCancelled(true);
-            ModTools.getChatUtil().getWaitingForSlowInput().remove(p.getUniqueId());
-            subCommandSlow.slowModeOn(p, seconds1);
-            return;
+            if(seconds1 == 0){
+                subCommandSlow.slowModeOff(p);
+                e.setCancelled(true);
+            }else {
+                e.setCancelled(true);
+                ModTools.getChatUtil().getWaitingForSlowInput().remove(p.getUniqueId());
+                subCommandSlow.slowModeOn(p, seconds1);
+                return;
+            }
         }
         if(pH.checkPermission(p, "modtools.chat.slow.exempt") || pH.checkPermission(p, "modtools.chat.lock.exempt")) {
             return;

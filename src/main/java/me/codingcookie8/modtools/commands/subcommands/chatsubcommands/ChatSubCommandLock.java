@@ -1,5 +1,6 @@
 package me.codingcookie8.modtools.commands.subcommands.chatsubcommands;
 
+import me.codingcookie8.modtools.ModTools;
 import me.codingcookie8.modtools.files.messages.GetMsgsFile;
 import me.codingcookie8.modtools.permissions.PermissionHandler;
 import org.bukkit.Bukkit;
@@ -10,7 +11,12 @@ public class ChatSubCommandLock {
 
     private GetMsgsFile messagesFile;
     private PermissionHandler pH;
-    private LockUtil lockUtil;
+
+    private final ModTools plugin;
+
+    public ChatSubCommandLock(ModTools plugin){
+        this.plugin = plugin;
+    }
 
     public void lockChat(Player p) {
         pH = new PermissionHandler();
@@ -20,19 +26,17 @@ public class ChatSubCommandLock {
             return;
         }
 
-        lockUtil = new LockUtil();
-
-        if(lockUtil.isLockEnabledConfig()){
-            lockUtil.setLockEnabledConfig(false);
-            lockUtil.setLockEnabledHashMap(false);
+        if(ModTools.getLockUtil().isLockEnabledConfig()){
+            ModTools.getLockUtil().setLockEnabledConfig(false);
+            ModTools.getLockUtil().setLockEnabledHashMap(false);
 
             if (messagesFile.getEnabled("lock-mode-off", true)) {
                 String message = ChatColor.translateAlternateColorCodes('&', messagesFile.getMessage("lock-mode-off", "&cChat has been unlocked."));
                 Bukkit.broadcastMessage(message.replace("%sender%", p.getName()));
             }
-        } else if(!lockUtil.isLockEnabledConfig()) {
-            lockUtil.setLockEnabledConfig(true);
-            lockUtil.setLockEnabledHashMap(true);
+        } else if(!ModTools.getLockUtil().isLockEnabledConfig()) {
+            ModTools.getLockUtil().setLockEnabledConfig(true);
+            ModTools.getLockUtil().setLockEnabledHashMap(true);
 
             if (messagesFile.getEnabled("lock-mode-on", true)) {
                 String message = ChatColor.translateAlternateColorCodes('&', messagesFile.getMessage("lock-mode-on", "&cChat has been locked!"));

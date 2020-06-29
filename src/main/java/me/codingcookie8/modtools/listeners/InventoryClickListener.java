@@ -33,7 +33,7 @@ public class InventoryClickListener implements Listener {
         InventoryView view = p.getOpenInventory();
 
         subCommandClear = new ChatSubCommandClear();
-        subCommandLock = new ChatSubCommandLock();
+        subCommandLock = new ChatSubCommandLock(plugin);
 
         if (view == null) {
             return;

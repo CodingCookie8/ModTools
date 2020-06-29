@@ -31,7 +31,7 @@ public class ChatGUI {
     }
 
     public void setChatGUI(Player p){
-        chatItems = new ChatItems();
+        chatItems = new ChatItems(plugin);
         pH = new PermissionHandler();
 
         getChatGUI().setItem(4, chatItems.makeChatSettingsItem());

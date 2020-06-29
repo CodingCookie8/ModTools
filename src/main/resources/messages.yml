@@ -17,8 +17,16 @@
 # Use %sender% to get the name of the sender.
 # Use %target% to get the name of the target.
 
+# -------------------------------------------------------- #
+# |                      General                         | #
+# -------------------------------------------------------- #
+
 no-permission: # %target% or %sender% is not applicable here
   message: "&cYou do not have permission to perform that command."
+  enabled: true
+
+no-player:
+  message: "&cCan't find player."
   enabled: true
 
 # -------------------------------------------------------- #

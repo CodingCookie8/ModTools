@@ -40,6 +40,8 @@ public class ChatGUIUtil {
         p.sendMessage("");
         p.sendMessage(GREEN + "" + STRIKETHROUGH + "----------------------------------");
         p.sendMessage(GOLD + "Type in the amount of seconds a player must wait before sending another message. " + RED + "Do not " + GOLD + "include any forwards-slashes or quotations, just the number.");
+        p.sendMessage("");
+        p.sendMessage(GOLD + "Type " + RED + "0" + GOLD + " to turn slow mode off.");
         p.sendMessage(GREEN + "" + STRIKETHROUGH + "----------------------------------");
     }
 }

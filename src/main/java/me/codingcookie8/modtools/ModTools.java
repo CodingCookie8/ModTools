@@ -13,12 +13,15 @@
 package me.codingcookie8.modtools;
 
 import me.codingcookie8.modtools.commands.CommandModTools;
+import me.codingcookie8.modtools.commands.subcommands.chatsubcommands.LockUtil;
 import me.codingcookie8.modtools.commands.subcommands.chatsubcommands.SlowUtil;
+import me.codingcookie8.modtools.commands.tabcompleter.ModToolsTab;
 import me.codingcookie8.modtools.gui.chat.ChatGUI;
 import me.codingcookie8.modtools.gui.chat.ChatGUIUtil;
 import me.codingcookie8.modtools.listeners.ChatListener;
 import me.codingcookie8.modtools.listeners.InventoryClickListener;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -31,9 +34,10 @@ public class ModTools extends JavaPlugin {
     private File folder;
     private File msgsFile;
     private File configFile;
-    private SlowUtil sV;
 
     private static ChatGUIUtil CHAT_UTIL;
+    private static LockUtil LOCK_UTIL;
+    private static SlowUtil SLOW_UTIL;
 
     public ChatListener chatListener;
     public InventoryClickListener inventoryClickListener;
@@ -42,10 +46,11 @@ public class ModTools extends JavaPlugin {
         plugin = this;
 
         CHAT_UTIL = new ChatGUIUtil();
+        LOCK_UTIL = new LockUtil();
+        SLOW_UTIL = new SlowUtil();
 
         chatListener = new ChatListener(this);
         inventoryClickListener = new InventoryClickListener(this);
-        sV = new SlowUtil();
 
         folder = new File("plugins" + File.separator + "ModTools");
         if(!folder.exists()) {
@@ -58,9 +63,16 @@ public class ModTools extends JavaPlugin {
             plugin.getLogger().info("Config files loaded.");
         }
 
-        if(sV.getEnabledHashMap()){
-            plugin.getLogger().warning("Slow mode is enabled! (" + sV.getLengthHashMap() + " seconds)");
+        if(getSlowUtil().isEnabledConfig()){
+            plugin.getLogger().warning("Slow mode is enabled! (" + getSlowUtil().getSlowModeLengthConfig() + " seconds)");
         }
+        if(getLockUtil().isLockEnabledConfig()) {
+            plugin.getLogger().warning("Chat is locked!");
+        }
+
+        getSlowUtil().getIntHashMap().put("slow", getSlowUtil().getSlowModeLengthConfig());
+        getSlowUtil().getBooleanHashMap().put("slow", getSlowUtil().isEnabledConfig());
+        getLockUtil().getBooleanHashMap().put("lock", getLockUtil().isLockEnabledConfig());
 
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(chatListener, this);
@@ -68,6 +80,9 @@ public class ModTools extends JavaPlugin {
 
         CommandExecutor mtExecutor = new CommandModTools(this);
         getCommand("modtools").setExecutor(mtExecutor);
+
+        TabCompleter modToolsTab = new ModToolsTab();
+        getCommand("modtools").setTabCompleter(modToolsTab);
 
         plugin.getLogger().info("Thank you for using ModTools version " + plugin.getDescription().getVersion());
     }
@@ -78,6 +93,14 @@ public class ModTools extends JavaPlugin {
 
     public static ChatGUIUtil getChatUtil(){
         return CHAT_UTIL;
+    }
+
+    public static LockUtil getLockUtil(){
+        return LOCK_UTIL;
+    }
+
+    public static SlowUtil getSlowUtil(){
+        return SLOW_UTIL;
     }
 
 }

@@ -7,8 +7,13 @@ import java.util.HashMap;
 public class SlowUtil {
 
     private GetConfigFile configFile;
-    private HashMap<String, Integer> slowModeLength = new HashMap<String, Integer>();
-    private HashMap<String, Boolean> slowModeEnabled = new HashMap<String, Boolean>();
+    private HashMap<String, Integer> slowModeLength;
+    private HashMap<String, Boolean> slowModeEnabled;
+
+    public SlowUtil(){
+        slowModeLength = new HashMap<String, Integer>();
+        slowModeEnabled = new HashMap<String, Boolean>();
+    }
 
     public int getSlowModeLengthConfig(){
         configFile = new GetConfigFile();
@@ -30,7 +35,7 @@ public class SlowUtil {
         configFile.setBoolean("chat.slow.enabled", enabled1);
     }
 
-    // HashMaps so we aren't referencing the config everytime the player chats
+    // HashMaps so we aren't referencing the config every time the player chats
 
     public HashMap<String, Integer> getIntHashMap(){
         return slowModeLength;
@@ -41,16 +46,10 @@ public class SlowUtil {
     }
 
     public int getLengthHashMap(){
-        if(getIntHashMap().get("slow") == null){
-            getIntHashMap().put("slow", getSlowModeLengthConfig());
-        }
         return getIntHashMap().get("slow");
     }
 
     public boolean getEnabledHashMap(){
-        if(getBooleanHashMap().get("slow") == null){
-            getBooleanHashMap().put("slow", isEnabledConfig());
-        }
         return getBooleanHashMap().get("slow");
     }
 

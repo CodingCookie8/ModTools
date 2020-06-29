@@ -75,8 +75,12 @@ permissions:
     description: Grants access to the invsee command.
     default: op
     children:
+      modtools.inventory.exempt: true
       modtools.inventory.main: true
       modtools.inventory.enderchest: true
+  modtools.inventory.exempt:
+    description: Stops other players from viewing this players inventory or enderchest.
+    default: op
   modtools.inventory.main:
     description: Grants access to the invsee command.
     default: op
