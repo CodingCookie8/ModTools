@@ -35,6 +35,10 @@ public class InventoryClickListener implements Listener {
         subCommandClear = new ChatSubCommandClear();
         subCommandLock = new ChatSubCommandLock(plugin);
 
+        if(!e.getView().getTitle().contains("Chat Settings")){
+            return;
+        }
+
         if (view == null) {
             return;
         }
@@ -44,37 +48,35 @@ public class InventoryClickListener implements Listener {
             return;
         }
 
-        if(e.getView().getTitle().contains("Chat Settings")){
-            if(clicked.getType() == Material.PAPER){
-                e.setCancelled(true);
-            }
-            if(clicked.getType() == Material.BUCKET){
-                e.setCancelled(true);
-                new BukkitRunnable(){
-                    public void run(){
-                        subCommandClear.clearChat(p);
-                        p.closeInventory();
-                    }
-                }.runTaskLater(plugin, 1L);
-            }
-            if(clicked.getType() == Material.YELLOW_WOOL){
-                e.setCancelled(true);
-                new BukkitRunnable(){
-                    public void run(){
-                        ModTools.getChatUtil().sendSlowAlert(p);
-                        p.closeInventory();
-                    }
-                }.runTaskLater(plugin, 1L);
-            }
-            if(clicked.getType() == Material.BARRIER){
-                e.setCancelled(true);
-                new BukkitRunnable(){
-                    public void run(){
-                        subCommandLock.lockChat(p);
-                        p.closeInventory();
-                    }
-                }.runTaskLater(plugin, 1L);
-            }
+        if (clicked.getType() == Material.PAPER) {
+            e.setCancelled(true);
         }
+        if (clicked.getType() == Material.BUCKET) {
+            e.setCancelled(true);
+            new BukkitRunnable() {
+                    public void run() { subCommandClear.clearChat(p);
+                    p.closeInventory();
+                    }
+                }.runTaskLater(plugin, 1L);
+            }
+        if (clicked.getType() == Material.YELLOW_WOOL) {
+            e.setCancelled(true);
+            new BukkitRunnable() {
+                public void run() {
+                    ModTools.getChatUtil().sendSlowAlert(p);
+                    p.closeInventory();
+                }
+            }.runTaskLater(plugin, 1L);
+        }
+        if (clicked.getType() == Material.BARRIER) {
+            e.setCancelled(true);
+            new BukkitRunnable() {
+                public void run() {
+                    subCommandLock.lockChat(p);
+                    p.closeInventory();
+                }
+            }.runTaskLater(plugin, 1L);
+        }
+
     }
 }

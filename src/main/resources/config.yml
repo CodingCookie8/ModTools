@@ -18,6 +18,48 @@
 # this file.
 
 # -------------------------------------------------------- #
+# |                  Punish Settings                     | #
+# -------------------------------------------------------- #
+
+ban:
+  option1:
+    duration: "&f&l24 Hours"
+    reasons:
+      - "&7First reason"
+      - "&7Second reason"
+      - "&7Third reason"
+      - "&7Other..."
+  option2:
+    duration: "&f&l1 Week"
+    reasons:
+      - "&7First reason"
+      - "&7Second reason"
+      - "&7Third reason"
+      - "&7Other..."
+  option3:
+    duration: "&f&l1 Month"
+    reasons:
+      - "&7First reason"
+      - "&7Second reason"
+      - "&7Third reason"
+      - "&7Other..."
+  option4:
+    duration: "&f&l1 Year"
+    reasons:
+      - "&7First reason"
+      - "&7Second reason"
+      - "&7Third reason"
+      - "&7Other..."
+  permanent:
+    duration: "&c&lPermanent"
+    reasons:
+      - "&7First reason"
+      - "&7Second reason"
+      - "&7Third reason"
+      - "&7Other..."
+
+
+# -------------------------------------------------------- #
 # |                   Chat Settings                      | #
 # -------------------------------------------------------- #
 

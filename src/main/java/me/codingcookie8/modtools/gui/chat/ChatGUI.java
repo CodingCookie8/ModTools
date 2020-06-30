@@ -1,8 +1,10 @@
 package me.codingcookie8.modtools.gui.chat;
 
 import me.codingcookie8.modtools.ModTools;
+import me.codingcookie8.modtools.gui.ban.BanItems;
 import me.codingcookie8.modtools.permissions.PermissionHandler;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;

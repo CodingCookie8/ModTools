@@ -1,10 +1,7 @@
 package me.codingcookie8.modtools.commands;
 
 import me.codingcookie8.modtools.ModTools;
-import me.codingcookie8.modtools.commands.subcommands.SubCommandChat;
-import me.codingcookie8.modtools.commands.subcommands.SubCommandEChest;
-import me.codingcookie8.modtools.commands.subcommands.SubCommandHelp;
-import me.codingcookie8.modtools.commands.subcommands.SubCommandInvsee;
+import me.codingcookie8.modtools.commands.subcommands.*;
 import me.codingcookie8.modtools.commands.subcommands.chatsubcommands.ChatSubCommandClear;
 import me.codingcookie8.modtools.commands.subcommands.chatsubcommands.ChatSubCommandLock;
 import me.codingcookie8.modtools.commands.subcommands.chatsubcommands.ChatSubCommandSlow;
@@ -12,10 +9,13 @@ import me.codingcookie8.modtools.files.messages.GetMsgsFile;
 import me.codingcookie8.modtools.permissions.PermissionHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 import static org.bukkit.ChatColor.*;
 
@@ -29,6 +29,7 @@ public class CommandModTools implements CommandExecutor {
     private SubCommandChat subCommandChat;
     private SubCommandInvsee subCommandInvsee;
     private SubCommandEChest subCommandEChest;
+    private SubCommandBan subCommandBan;
     private ChatSubCommandClear chatSubCommandClear;
     private ChatSubCommandSlow chatSubCommandSlow;
     private ChatSubCommandLock chatSubCommandLock;
@@ -47,6 +48,7 @@ public class CommandModTools implements CommandExecutor {
         subCommandChat = new SubCommandChat(plugin);
         subCommandInvsee = new SubCommandInvsee(plugin);
         subCommandEChest = new SubCommandEChest(plugin);
+        subCommandBan = new SubCommandBan(plugin);
         chatSubCommandClear = new ChatSubCommandClear();
         chatSubCommandSlow = new ChatSubCommandSlow(plugin);
         chatSubCommandLock = new ChatSubCommandLock(plugin);
@@ -70,6 +72,21 @@ public class CommandModTools implements CommandExecutor {
             }
             if((args[0].equalsIgnoreCase("echest")) || (args[0].equalsIgnoreCase("enderchest"))){
                 subCommandEChest.eChest(p, args[1]);
+            }
+            if(args[0].equalsIgnoreCase("ban")){
+                //Bukkit.getBanList(Type.NAME).addBan(victimName, reason, expiration, additionalInfo);
+                String name = args[1];
+                Player targetPlayer = plugin.getServer().getPlayer(args[0]);
+                if(targetPlayer != null){
+                    subCommandBan.commandBanGUI(p, targetPlayer);
+                    return true;
+                }
+                for (OfflinePlayer offlinePlayer : Bukkit.getOfflinePlayers()) {
+                    if (offlinePlayer.getName().equalsIgnoreCase(name)) {
+                        subCommandBan.commandBanGUI(p, offlinePlayer);
+                        return true;
+                    }
+                }
             }
             if(args[0].equalsIgnoreCase("chat")) {
                 if (args[1].equalsIgnoreCase("clear")) {
@@ -109,4 +126,5 @@ public class CommandModTools implements CommandExecutor {
         }
         return false;
     }
+
 }

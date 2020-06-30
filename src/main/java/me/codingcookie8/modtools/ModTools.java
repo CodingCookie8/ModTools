@@ -16,13 +16,11 @@ import me.codingcookie8.modtools.commands.CommandModTools;
 import me.codingcookie8.modtools.commands.subcommands.chatsubcommands.LockUtil;
 import me.codingcookie8.modtools.commands.subcommands.chatsubcommands.SlowUtil;
 import me.codingcookie8.modtools.commands.tabcompleter.ModToolsTab;
-import me.codingcookie8.modtools.gui.chat.ChatGUI;
 import me.codingcookie8.modtools.gui.chat.ChatGUIUtil;
 import me.codingcookie8.modtools.listeners.ChatListener;
 import me.codingcookie8.modtools.listeners.InventoryClickListener;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -46,8 +44,8 @@ public class ModTools extends JavaPlugin {
         plugin = this;
 
         CHAT_UTIL = new ChatGUIUtil();
-        LOCK_UTIL = new LockUtil();
-        SLOW_UTIL = new SlowUtil();
+        LOCK_UTIL = new LockUtil(this);
+        SLOW_UTIL = new SlowUtil(this);
 
         chatListener = new ChatListener(this);
         inventoryClickListener = new InventoryClickListener(this);

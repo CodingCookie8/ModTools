@@ -1,38 +1,36 @@
 package me.codingcookie8.modtools.commands.subcommands.chatsubcommands;
 
-import me.codingcookie8.modtools.files.config.GetConfigFile;
+import me.codingcookie8.modtools.ModTools;
 
 import java.util.HashMap;
 
 public class SlowUtil {
 
-    private GetConfigFile configFile;
+    private ModTools plugin;
+
     private HashMap<String, Integer> slowModeLength;
     private HashMap<String, Boolean> slowModeEnabled;
 
-    public SlowUtil(){
+    public SlowUtil(ModTools plugin){
+        this.plugin = plugin;
         slowModeLength = new HashMap<String, Integer>();
         slowModeEnabled = new HashMap<String, Boolean>();
     }
 
     public int getSlowModeLengthConfig(){
-        configFile = new GetConfigFile();
-        return configFile.getInt("chat.slow.length", 0);
+        return plugin.getConfig().getInt("chat.slow.length", 0);
     }
 
     public void setSlowModeLengthConfig(int length1){
-        configFile = new GetConfigFile();
-        configFile.setInt("chat.slow.length", length1);
+        plugin.getConfig().set("chat.slow.length", length1);
     }
 
     public boolean isEnabledConfig(){
-        configFile = new GetConfigFile();
-        return configFile.getBoolean("chat.slow.enabled", false);
+        return plugin.getConfig().getBoolean("chat.slow.enabled", false);
     }
 
     public void setEnabledConfig(boolean enabled1){
-        configFile = new GetConfigFile();
-        configFile.setBoolean("chat.slow.enabled", enabled1);
+        plugin.getConfig().set("chat.slow.enabled", enabled1);
     }
 
     // HashMaps so we aren't referencing the config every time the player chats
